@@ -1,98 +1,530 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photo Event</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
-    }
+    <title>PHOTO EVENT</title>
 
-    header {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 30px 15px;
-    }
+    <meta name="description" content="Vos souvenirs, accessibles facilement.">
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-    }
-
-    header p {
-      margin-top: 10px;
-      color: #ccc;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 15px;
-    }
-
-    .event {
-      background: white;
-      border-radius: 15px;
-      padding: 25px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-
-    .event h2 {
-      margin-top: 0;
-    }
-
-    .album {
-      display: block;
-      background: #111;
-      color: white;
-      text-decoration: none;
-      padding: 15px;
-      margin-top: 10px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .album:hover {
-      background: #333;
-    }
-  </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header>
-    <h1>📸 PHOTO EVENT</h1>
-    <p>Vos souvenirs, accessibles facilement</p>
-  </header>
+    <!-- =========================
+         EN-TÊTE
+    ========================== -->
 
-  <div class="container">
+    <header class="header">
 
-    <div class="event">
-      <h2>💍 Mariage Jean & Marie</h2>
-      <p>Album photo du mariage</p>
+        <div class="header-container">
 
-      <a class="album" href="https://drive.google.com/drive/folders/1LiJ6mH-0hChSuMU7xKCnnCVVfOXKGWQb" target="_blank">
-  📷 Cérémonie
-      </a>
-      
-      <a class="album" href="#">
-        🎉 Réception
-      </a>
+            <!-- Logo / photographe -->
+            <a href="#" class="photographer">
 
-      <a class="album" href="#">
-        ❤️ Séance photo
-      </a>
+                <div class="photographer-avatar">
+                    📸
+                </div>
+
+                <div>
+                    <strong id="photographerName">
+                        MON PSEUDO
+                    </strong>
+
+                    <span>
+                        Photographe
+                    </span>
+                </div>
+
+            </a>
+
+
+            <!-- Menu -->
+            <nav class="navigation">
+
+                <a href="#accueil">
+                    Accueil
+                </a>
+
+                <a href="#evenements">
+                    Événements
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+                <button
+                    class="login-button"
+                    onclick="openLogin()">
+
+                    👤 Connexion
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         CONTENU PRINCIPAL
+    ========================== -->
+
+    <main>
+
+
+        <!-- HERO -->
+
+        <section class="hero" id="accueil">
+
+            <div class="hero-content">
+
+                <span class="hero-small-title">
+                    📸 PHOTO EVENT
+                </span>
+
+                <h1>
+                    Vos souvenirs,<br>
+                    <span>accessibles facilement.</span>
+                </h1>
+
+                <p>
+                    Retrouvez vos photos d'événements,
+                    consultez vos albums et partagez
+                    vos meilleurs souvenirs.
+                </p>
+
+                <a
+                    href="#evenements"
+                    class="main-button">
+
+                    📷 Voir les événements
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             ÉVÉNEMENTS
+        ========================== -->
+
+        <section class="events-section" id="evenements">
+
+            <div class="section-title">
+
+                <span>
+                    MES ÉVÉNEMENTS
+                </span>
+
+                <h2>
+                    Retrouvez vos souvenirs
+                </h2>
+
+                <p>
+                    Choisissez un événement pour accéder
+                    aux albums photos.
+                </p>
+
+            </div>
+
+
+            <div class="events-grid">
+
+
+                <!-- ÉVÉNEMENT -->
+
+                <article class="event-card">
+
+                    <div class="event-image">
+
+                        <div class="event-icon">
+                            💍
+                        </div>
+
+                    </div>
+
+
+                    <div class="event-content">
+
+                        <span class="event-date">
+                            📅 10 Septembre 2026
+                        </span>
+
+                        <h3>
+                            Mariage Jean & Marie
+                        </h3>
+
+                        <p>
+                            Retrouvez les photos de la
+                            cérémonie, de la réception
+                            et de la séance photo.
+                        </p>
+
+
+                        <div class="album-buttons">
+
+                            <a
+                                href="https://drive.google.com/drive/folders/1LiJ6mH-0hChSuMU7xKCnnCVVfOXKGWQb"
+                                target="_blank"
+                                class="album-button">
+
+                                📷 Cérémonie
+
+                            </a>
+
+
+                            <a
+                                href="#"
+                                class="album-button">
+
+                                🎉 Réception
+
+                            </a>
+
+
+                            <a
+                                href="#"
+                                class="album-button">
+
+                                ❤️ Séance photo
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             INFORMATIONS
+        ========================== -->
+
+        <section class="info-section">
+
+            <div class="info-grid">
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        📸
+                    </div>
+
+                    <h3>
+                        Photos de qualité
+                    </h3>
+
+                    <p>
+                        Retrouvez vos souvenirs
+                        dans une galerie simple
+                        et agréable.
+                    </p>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        📱
+                    </div>
+
+                    <h3>
+                        Téléphone ou ordinateur
+                    </h3>
+
+                    <p>
+                        Le site s'adapte automatiquement
+                        à votre écran.
+                    </p>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        💬
+                    </div>
+
+                    <h3>
+                        Partagez vos impressions
+                    </h3>
+
+                    <p>
+                        Les visiteurs pourront commenter
+                        les photos.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section class="contact-section" id="contact">
+
+            <div class="section-title">
+
+                <span>
+                    CONTACT
+                </span>
+
+                <h2>
+                    Besoin de me contacter ?
+                </h2>
+
+                <p>
+                    Je suis disponible pour vos événements
+                    et vos projets photographiques.
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+
+                <!-- TÉLÉPHONE -->
+
+                <a
+                    href="tel:+261000000000"
+                    class="contact-item">
+
+                    <div class="contact-icon">
+                        📞
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Téléphone
+                        </strong>
+
+                        <span>
+                            +261 00 00 000 00
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- WHATSAPP -->
+
+                <a
+                    href="https://wa.me/261000000000"
+                    target="_blank"
+                    class="contact-item">
+
+                    <div class="contact-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            WhatsApp
+                        </strong>
+
+                        <span>
+                            Écrire sur WhatsApp
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- EMAIL -->
+
+                <a
+                    href="mailto:votreemail@example.com"
+                    class="contact-item">
+
+                    <div class="contact-icon">
+                        ✉️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Email
+                        </strong>
+
+                        <span>
+                            votreemail@example.com
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         PIED DE PAGE
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div>
+
+                <strong>
+                    📸 PHOTO EVENT
+                </strong>
+
+                <p>
+                    Vos souvenirs, pour toujours.
+                </p>
+
+            </div>
+
+
+            <div class="creator">
+
+                <span>
+                    Site créé par
+                </span>
+
+                <strong id="creatorName">
+                    VOTRE NOM
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 PHOTO EVENT — Tous droits réservés.
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         FENÊTRE CONNEXION
+    ========================== -->
+
+    <div
+        class="modal"
+        id="loginModal">
+
+        <div class="modal-content">
+
+            <button
+                class="close-button"
+                onclick="closeLogin()">
+
+                ×
+
+            </button>
+
+
+            <div class="login-avatar">
+                👤
+            </div>
+
+
+            <h2>
+                Bienvenue
+            </h2>
+
+            <p>
+                Connectez-vous pour accéder
+                à l'événement.
+            </p>
+
+
+            <form onsubmit="loginVisitor(event)">
+
+                <label>
+                    Pseudo
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Votre pseudo"
+                    required>
+
+
+                <label>
+                    Mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Votre mot de passe"
+                    required>
+
+
+                <button
+                    type="submit"
+                    class="main-button full-button">
+
+                    🔐 Se connecter
+
+                </button>
+
+            </form>
+
+
+            <button
+                class="create-account-button"
+                onclick="createAccount()">
+
+                Créer mon compte
+
+            </button>
+
+        </div>
+
     </div>
 
-  </div>
 
-  
+
+    <script src="script.js"></script>
+
 </body>
-    </html>
+</html>
