@@ -97,8 +97,7 @@ function updateContactLinks() {
 
 
 /* =========================
-   CHARGEMENT AUTOMATIQUE
-   DES ÉVÉNEMENTS ET ALBUMS
+   CHARGEMENT DES ÉVÉNEMENTS
 ========================= */
 
 async function loadEvents() {
@@ -106,9 +105,7 @@ async function loadEvents() {
     const eventsGrid =
         document.querySelector(".events-grid");
 
-    if (!eventsGrid) {
-        return;
-    }
+    if (!eventsGrid) return;
 
 
     try {
@@ -122,9 +119,7 @@ async function loadEvents() {
 
 
         if (!response.ok) {
-            throw new Error(
-                "Impossible de contacter l'API"
-            );
+            throw new Error("Erreur API");
         }
 
 
@@ -161,17 +156,16 @@ async function loadEvents() {
                 event.albums.length > 0) {
 
                 event.albums.forEach(
-                    function (album) {
+                    function (album, index) {
 
                         albumsHTML += `
-                            <a
-                                href="${album.url}"
-                                target="_blank"
-                                class="album-btn"
-                            >
+                            <a href="#"
+                               class="album-btn"
+                               onclick="openGallery(${JSON.stringify(event.name)}, ${index}); return false;">
                                 📁 ${album.name}
                             </a>
                         `;
+
                     }
                 );
 
@@ -209,6 +203,9 @@ async function loadEvents() {
         });
 
 
+        window.photoEvents = data.events;
+
+
     } catch (error) {
 
         console.error(
@@ -224,6 +221,129 @@ async function loadEvents() {
             </p>
         `;
     }
+}
+
+
+/* =========================
+   OUVRIR UN ALBUM
+========================= */
+
+function openGallery(eventName, albumIndex) {
+
+    const events =
+        window.photoEvents || [];
+
+
+    const event =
+        events.find(function (item) {
+            return item.name === eventName;
+        });
+
+
+    if (!event) return;
+
+
+    const album =
+        event.albums[albumIndex];
+
+
+    if (!album) return;
+
+
+    const gallery =
+        document.getElementById("photoGallery");
+
+    const title =
+        document.getElementById("galleryTitle");
+
+    const container =
+        document.getElementById("photosContainer");
+
+
+    if (!gallery ||
+        !title ||
+        !container) return;
+
+
+    title.textContent =
+        event.name + " — " + album.name;
+
+
+    container.innerHTML = "";
+
+
+    if (!album.photos ||
+        album.photos.length === 0) {
+
+        container.innerHTML =
+            "<p style='color:white;text-align:center;'>Aucune photo disponible.</p>";
+
+    } else {
+
+        album.photos.forEach(function (photo) {
+
+            const item =
+                document.createElement("div");
+
+            item.className =
+                "photo-item";
+
+
+            item.innerHTML = `
+
+                <img
+                    src="${photo.url}"
+                    alt="${photo.name}"
+                    loading="lazy"
+                >
+
+                <div class="photo-actions">
+
+                    <a
+                        href="${photo.download}"
+                        class="download-photo"
+                        target="_blank"
+                        download
+                    >
+                        📥 Télécharger
+                    </a>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(item);
+
+        });
+
+    }
+
+
+    gallery.classList.add("active");
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* =========================
+   FERMER LA GALERIE
+========================= */
+
+function closeGallery() {
+
+    const gallery =
+        document.getElementById("photoGallery");
+
+
+    if (gallery) {
+        gallery.classList.remove("active");
+    }
+
+
+    document.body.style.overflow =
+        "";
 }
 
 
@@ -291,9 +411,7 @@ function createAccount() {
         );
 
 
-    if (!username) {
-        return;
-    }
+    if (!username) return;
 
 
     const password =
@@ -302,9 +420,7 @@ function createAccount() {
         );
 
 
-    if (!password) {
-        return;
-    }
+    if (!password) return;
 
 
     localStorage.setItem(
@@ -335,6 +451,7 @@ document.addEventListener(
                 "loginModal"
             );
 
+
         if (
             modal &&
             event.target === modal
@@ -343,106 +460,6 @@ document.addEventListener(
             closeLogin();
 
         }
-       /* =========================
-   GALERIE PHOTOS
-========================= */
-
-.photo-gallery {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.92);
-    overflow-y: auto;
-    padding: 30px 15px;
-}
-
-.photo-gallery.active {
-    display: block;
-}
-
-.gallery-content {
-    max-width: 1200px;
-    margin: auto;
-    position: relative;
-}
-
-#galleryTitle {
-    color: white;
-    text-align: center;
-    margin: 20px 0 30px;
-}
-
-.close-gallery {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    background: white;
-    color: black;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 10000;
-}
-
-.photos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.photo-item {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-}
-
-.photo-item img {
-    display: block;
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-
-.photo-actions {
-    padding: 12px;
-    text-align: center;
-}
-
-.download-photo {
-    display: inline-block;
-    padding: 9px 16px;
-    border-radius: 8px;
-    background: #111;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.download-photo:hover {
-    opacity: 0.8;
-}
-
-@media (max-width: 600px) {
-
-    .photos-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .photo-item img {
-        height: 150px;
-    }
-
-    .close-gallery {
-        top: 10px;
-        right: 10px;
-    }
-   }
 
     }
 );
