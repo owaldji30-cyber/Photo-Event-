@@ -207,12 +207,56 @@ function loginVisitor(event) {
 
 function createAccount() {
 
+    const username = prompt(
+        "Choisissez votre pseudo :"
+    );
+
+    if (!username) {
+        return;
+    }
+
+    const password = prompt(
+        "Choisissez votre mot de passe :"
+    );
+
+    if (!password) {
+        return;
+    }
+
+    const confirmPassword = prompt(
+        "Confirmez votre mot de passe :"
+    );
+
+    if (password !== confirmPassword) {
+
+        alert(
+            "❌ Les mots de passe ne correspondent pas."
+        );
+
+        return;
+    }
+
+
+    const account = {
+
+        username: username,
+
+        password: password
+
+    };
+
+
+    localStorage.setItem(
+        "photoEventAccount",
+        JSON.stringify(account)
+    );
+
+
     alert(
-        "La création de compte sera activée dans la prochaine étape."
+        "✅ Votre compte a été créé avec succès !"
     );
 
 }
-
 
 /* =========================
    FERMETURE EN CLIQUANT
