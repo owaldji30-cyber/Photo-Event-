@@ -795,5 +795,7 @@ a {
     .event-content h3 {
         font-size: 21px;
     }
-
+body {
+    background: red !important;
+        }
   }
