@@ -1,7 +1,7 @@
 /* =========================
    CONFIGURATION
 ========================= */
-
+const API_URL = "https://script.google.com/macros/s/AKfycbwJ_M7CxWkCeqJBYNYvpan_fj-EPVyv9OqhAymtdNzAEpSpq4rILPmkHQkEWuhaayLF/exec";
 const SITE_CONFIG = {
 
     photographer: "MON PSEUDO",
